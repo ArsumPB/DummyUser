@@ -92,9 +92,9 @@ function dummy.OnUpdate()
 										end
 									end
 									if Ability.GetName(item) == "item_bloodstone" and Ability.IsReady(item) then
-										if Ability.IsReady(bloodstone) and Entity.GetHealth(me) / Entity.GetMaxHealth(me) < 0.25 and NPC.FindFacingNPC(enemy, nil, Enum.TeamType.TEAM_ENEMY, 600, 15) == heroes then
+										if Ability.IsReady(item) and Entity.GetHealth(me) / Entity.GetMaxHealth(me) < 0.25 and NPC.FindFacingNPC(enemy, nil, Enum.TeamType.TEAM_ENEMY, 600, 15) == heroes then
 											if NPC.IsAttacking(enemy) then
-												Ability.CastNoTarget(bloodstone)
+												Ability.CastNoTarget(item)
 											end
 										end
 									end
@@ -143,6 +143,7 @@ function dummy.OnUpdate()
 								local spell = NPC.GetAbility(enemy, spells)
 								if spell then
 									local castrange = Ability.GetCastRange(spell)
+									local bloodstone = NPC.GetItem(me, "item_bloodstone", true)
 									if Ability.IsInAbilityPhase(spell) then
 										if Ability.GetName(spell) == "axe_culling_blade" or Ability.GetName(spell) == "lion_finger_of_death" or Ability.GetName(spell) == "lina_laguna_blade" then
 											if bloodstone and Ability.IsReady(bloodstone) and NPC.FindFacingNPC(enemy, nil, Enum.TeamType.TEAM_ENEMY, castrange + 50, 15) == heroes and not NPC.IsLinkensProtected(heroes) then
